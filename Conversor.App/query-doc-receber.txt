@@ -1,0 +1,19 @@
+select  
+
+dr.id_documento_receber as id,
+dr.numero_documento_receber as numeroDocumento,
+1 as numeroParcela,
+dr.descricao as descricao,
+dr.id_entidade as clienteId,
+case when dr.situacao = 1 then 'A' else 'Q' end as situacao,
+dr.data_emissao as emissao,
+dr.data_vencimento as vencimento,
+dr.data_quitacao as quitacao,
+dr.valor as valor,
+0 as juros,
+0 as multa,
+0 as desconto,
+dr.valor - dr.saldo as valorQuitado,
+0 as valorFinal
+
+from documento_receber dr

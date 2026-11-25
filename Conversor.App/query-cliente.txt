@@ -1,0 +1,34 @@
+select
+
+e.id_entidade as codigo,
+'C' as tipo,
+e.nome as nome,
+coalesce(pf.cpf,'') as cpf,
+coalesce(pf.rg,'') as rg,
+'' as orgaoRg,
+0 as sexo,
+pf.data_nascimento as dataNascimento,
+coalesce(pf.nome_mae,'') as nomeMae,
+coalesce(pf.nome_pai,'') as nomePai,
+coalesce(pj.cnpj,'') as cnpj,
+coalesce(pj.nome_fantasia,'') as nomeFantasia,
+coalesce(case when pf.ie is null then pj.ie else pf.ie end,'') as inscricaoEstadual,
+9 as indicadorIe,
+case when e.observacao is null then '' else e.observacao end as observacao,
+e.logradouro as logradouro,
+e.numero_endereco as numeroEndereco,
+e.bairro as bairro,
+e.cep as cep,
+coalesce(e.complemento,'') as complemento,
+c.nome as cidade,
+c.id_ibge as codigoIbge,
+c.uf as estado,
+coalesce(e.email,'') as email,
+coalesce(e.fone_primario_ddd + e.fone_primario_numero,'') as telefone,
+coalesce(e.limite_credito,0) as limiteCredito,
+case when e.tipo_entidade = 1 then 'F' else 'J' end as fisicaJuridica
+
+from entidade e
+left join pessoa_fisica pf on pf.id_entidade = e.id_entidade
+left join pessoa_juridica pj on pj.id_entidade = e.id_entidade
+left join cidade c on c.id_cidade = e.id_cidade

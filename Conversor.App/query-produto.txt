@@ -1,0 +1,40 @@
+select  
+
+p.id_produto as codigo,
+p.nome as nome,
+p.origem_produto as origemMercadoria,
+p.preco_custo as precoCompra,
+p.preco_venda as precoVenda,
+coalesce(se.quantidade,0) as estoque,
+replace(n.id_ncm,'.','') as ncm,
+coalesce(n.codigo_cest,'') as cest,
+p.id_marca_produto as marca,
+'' as grupo,
+um.sigla as unidade,
+p.markup_varejo as mva,
+coalesce((select top 1 ps.codigo_barras from produto_sinonimo ps where ps.id_produto = p.id_produto and len(ps.codigo_barras) between 8 and 14),'') as codigoBarras,
+p.id_produto as codigoFabricante,
+'' as codigoAnp,
+p.referencia_interna_produto as referencia,
+'' as observacao,
+0 as percentualGlpPetroleo,
+0 as percentualGasNacional,
+0 as percentualGasImportado,
+0 as valorPartida,
+'' as codigoBalanca,
+coalesce(p.codigo_beneficio_fiscal,'') as codigoBeneficioFiscal,
+p.aliquota_pis as aliqPis,
+coalesce(p.id_situacao_tributaria_pis,49) as sitPis,
+p.aliquota_cofins as aliqCofins,
+coalesce(p.id_situacao_tributaria_cofins,49) as sitCofins,
+p.aliquota_ipi as aliqIpi,
+p.id_situacao_tributaria_ipi as sitIpi,
+17 as aliqIcms,
+102 as cstIcms,
+5102 as cfop,
+'999' as enqIpi
+
+from produto p
+left join saldo_estoque se on se.id_produto = p.id_produto
+left join ncm n on n.id_ncm = p.id_ncm
+left join unidade_medida um on um.id_unidade_medida = p.id_unidade_medida

@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Conversor.Data</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <TargetFramework>netcoreapp6.0</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>11.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Conversor.Business">
+      <HintPath>..\..\..\..\..\Users\User\.gemini\antigravity-ide\brain\56b21f29-ad13-490f-86fe-5d08ee9de1d9\extracted_bin\Conversor.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Expressions" />
+    <Reference Include="System.Collections" />
+    <Reference Include="Microsoft.EntityFrameworkCore" />
+    <Reference Include="Microsoft.EntityFrameworkCore.SqlServer">
+      <HintPath>..\..\..\..\..\Users\User\.gemini\antigravity-ide\brain\56b21f29-ad13-490f-86fe-5d08ee9de1d9\extracted_bin\Microsoft.EntityFrameworkCore.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Queryable" />
+  </ItemGroup>
+</Project>

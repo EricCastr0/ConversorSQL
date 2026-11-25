@@ -1,0 +1,19 @@
+select  
+
+dr.id_documento_pagar as id,
+dr.numero_documento_pagar as numeroDocumento,
+1 as numeroParcela,
+dr.descricao as descricao,
+dr.id_entidade as fornecedorId,
+case when dr.situacao = 1 then 'A' else 'Q' end as situacao,
+dr.data_emissao as emissao,
+dr.data_vencimento as vencimento,
+coalesce(dr.data_quitacao,'1900-01-01') as quitacao,
+dr.valor as valor,
+0 as juros,
+0 as multa,
+0 as desconto,
+dr.valor - dr.saldo as valorQuitado,
+dr.valor as valorFinal
+
+from documento_pagar dr
